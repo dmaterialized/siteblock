@@ -17,11 +17,14 @@ website_list = ['www.facebook.com', 'facebook.com',
 # # # #
 
 while True:
-    if dt(dt.now().year, dt.now().month, dt.now().day, 8) < dt.now() < dt(dt.now().year, dt.now().month, dt.now().day, 16):
+    if dt(dt.now().year, dt.now().month, dt.now().day, 8) \
+     < dt.now() < dt(dt.now().year, dt.now().month, dt.now().day, 18):
         # -----------------
         # original:
-        # if dt(dt.now().year, dt.now().month, dt.now().day, 8) < dt.now() < (dt.now().year, dt.now().month, dt.now().day, 16):
-        # ^^^^^^ ERROR: the entire thing fell apart because last item was not in dt().
+        # if dt(dt.now().year, dt.now().month, dt.now().day, 8) < dt.now() \
+        # < (dt.now().year, dt.now().month, dt.now().day, 16):
+        # ^^^^^^ ERROR: the entire thing fell apart because
+        #        the last item was not in dt().
         # -----------------
         print("Working hours.")
         with open(hosts_temp, 'r+') as file:
@@ -30,29 +33,30 @@ while True:
             for website in website_list:
                 # for each site
                 if website in content:
-                    # if website is already in new memory copy of the file --------------------
+                    # if website is already in memory copy -----------
                     pass
                 else:
-                    # write the website taking care to add the line at the end.
+                    # write the website taking care to add the newline char \n at the end.
                     file.write(redirect + " " + website + "\n")
 
     else:
-        print("you are free.")
         with open(hosts_temp, 'r+') as file:
-            content=file.read()
+            content=file.readlines() #readlines is used here
+            file.seek(0) # move to the start of the file
+            for line in content: # for each line
+                if not any(website in line for website in website_list):
+                    # if each item in the site list
+                    # is not seen on line [i], then
+                    #
+                    file.write(line)
+            file.truncate()
+        print("you are free.")
 
-        # none of the below happens in this else
-        # ---------------------------------------------------
-        # with open(hosts_temp, 'r+') as file:
-        #     content = file.read()
-        #     print(content)
-        # ----------------------------------------------------
-        # testing purposes only
 
         # test the for loop when outside of work hours.
         # with open(hosts_temp, 'r+') as file:
         #     #  first check the content that exists
-        #     content = file.read()  # where does content get defined?
+        #     content = file.read()
         #     #  iterate through website list
         #     for website in website_list:
         #         #  for each site
@@ -60,8 +64,9 @@ while True:
         #             #  if website is already there
         #             pass
         #         else:
-        #             # write the website, taking care to add the line at the end.
+        #             # write the site, taking care to add the line at the end.
         #             file.write(redirect + " " + website + "\n")
         # # ----------------------------------------------------
         # DEBUG: ^^^^ remove this section after testing ^^^^
+
     time.sleep(60)
