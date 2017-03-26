@@ -27,7 +27,7 @@ while True:
         #        the last item was not in dt().
         # -----------------
         print("Working hours.")
-        with open(hosts_temp, 'r+') as file:
+        with open(hosts_path, 'r+') as file:
             content = file.read() # store file content in a variable.
             # iterate through website list --------------------
             for website in website_list:
@@ -42,7 +42,7 @@ while True:
 
     else:
         # if it's nonworking hours
-        with open(hosts_temp, 'r+') as file:
+        with open(hosts_path, 'r+') as file:
             content=file.readlines() #readlines is used here
             file.seek(0) # move to the start of the file
             for line in content: # for each line
