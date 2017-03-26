@@ -51,22 +51,4 @@ while True:
                     file.write(line)
             file.truncate()
         print("you are free.")
-
-
-        # test the for loop when outside of work hours.
-        # with open(hosts_temp, 'r+') as file:
-        #     #  first check the content that exists
-        #     content = file.read()
-        #     #  iterate through website list
-        #     for website in website_list:
-        #         #  for each site
-        #         if website in content:
-        #             #  if website is already there
-        #             pass
-        #         else:
-        #             # write the site, taking care to add the line at the end.
-        #             file.write(redirect + " " + website + "\n")
-        # # ----------------------------------------------------
-        # DEBUG: ^^^^ remove this section after testing ^^^^
-
-    time.sleep(60)
+    time.sleep(120)
