@@ -23,7 +23,7 @@ while True:
         # if dt(dt.now().year, dt.now().month, dt.now().day, 8) < dt.now() < (dt.now().year, dt.now().month, dt.now().day, 16):
         # ^^^^^^ ERROR: the entire thing fell apart because last item was not in dt().
         # -----------------
-        print("Working hours.") 
+        print("Working hours.")
         # open and iterate --------------------
         with open(hosts_temp, 'r+') as file:
             # first check the content that exists
@@ -47,7 +47,7 @@ while True:
         #     print(content)
         # ----------------------------------------------------
         # testing purposes only
-
+        # test the for loop when outside of work hours.
         with open(hosts_temp, 'r+') as file:
             #  first check the content that exists
             content = file.read()  # where does content get defined?
