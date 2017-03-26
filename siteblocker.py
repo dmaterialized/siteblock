@@ -36,10 +36,12 @@ while True:
                     # if website is already in memory copy -----------
                     pass
                 else:
-                    # write the website taking care to add the newline char \n at the end.
+                    # write the website.
+                    # take care to add the newline char \n at the end.
                     file.write(redirect + " " + website + "\n")
 
     else:
+        # if it's nonworking hours
         with open(hosts_temp, 'r+') as file:
             content=file.readlines() #readlines is used here
             file.seek(0) # move to the start of the file
@@ -47,8 +49,7 @@ while True:
                 if not any(website in line for website in website_list):
                     # if each item in the site list
                     # is not seen on line [i], then
-                    #
                     file.write(line)
-            file.truncate()
+            file.truncate() #remove everything that comes after
         print("you are free.")
     time.sleep(120)
