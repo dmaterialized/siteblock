@@ -6,6 +6,8 @@ from datetime import datetime as dt
 # siteblocker.py
 # accesses a hostfile and edits it based on the time of day.
 #
+# TODO
+# does not yet run as a daemon/cron
 
 hosts_temp = "/Users/DM-Alt/Software Dev/Python/siteblock/hosts"
 hosts_path = "/etc/hosts"
@@ -51,5 +53,8 @@ while True:
                     # is not seen on line [i], then
                     file.write(line)
             file.truncate() #remove everything that comes after
+            # still not sure why:
+            # - we write file lines when in fact we want to remove them
+            # - how if not any(website in line for website in website_list) works
         print("you are free.")
     time.sleep(120)
