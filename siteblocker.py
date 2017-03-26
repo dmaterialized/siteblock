@@ -48,18 +48,18 @@ while True:
         # ----------------------------------------------------
         # testing purposes only
         # test the for loop when outside of work hours.
-        with open(hosts_temp, 'r+') as file:
-            #  first check the content that exists
-            content = file.read()  # where does content get defined?
-            #  iterate through website list
-            for website in website_list:
-                #  for each site
-                if website in content:
-                    #  if website is already there
-                    pass
-                else:
-                    # write the website taking care to add the line at the end.
-                    file.write(redirect + " " + website + "\n")
-        # ----------------------------------------------------
+        # with open(hosts_temp, 'r+') as file:
+        #     #  first check the content that exists
+        #     content = file.read()  # where does content get defined?
+        #     #  iterate through website list
+        #     for website in website_list:
+        #         #  for each site
+        #         if website in content:
+        #             #  if website is already there
+        #             pass
+        #         else:
+        #             # write the website taking care to add the line at the end.
+        #             file.write(redirect + " " + website + "\n")
+        # # ----------------------------------------------------
         # DEBUG: ^^^^ remove this section after testing ^^^^
     time.sleep(60)
