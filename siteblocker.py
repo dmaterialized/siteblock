@@ -24,11 +24,10 @@ website_list = ['www.facebook.com', 'facebook.com',
 print(dt.now().weekday()) # syntax for printing day of week
 
 while True:
-
     # today is Tuesday (1) so we use another number for testing (0)
 
+    # ATTEMPTS
     # 1 : if (dt.today().weekday()) in range [0:4]:
-
     # 2: weekday = int(dt.today().weekday())
     #   if weekday not in range [0:4]:
     #
@@ -36,12 +35,12 @@ while True:
     # if dt.today().weekday < 5:
     #
     # 4:
-    print(int(dt.now().weekday()))
+    # print(int(dt.now().weekday()))
         #
         # -- we need a range that is 0,1,2,3,4 for M-F but datetime is not subscriptable in a range like this.
+        # solved by not using a range but rather < 5
     if int(dt.now().weekday()) < 5:
-        if dt(dt.now().year, dt.now().month, dt.now().day, 8) \
-         < dt.now() < dt(dt.now().year, dt.now().month, dt.now().day, 18):
+        if dt(dt.now().year, dt.now().month, dt.now().day, 8) < dt.now() < dt(dt.now().year, dt.now().month, dt.now().day, 18):
             # -----------------
             # original:
             # if dt(dt.now().year, dt.now().month, dt.now().day, 8) < dt.now() \
