@@ -8,14 +8,15 @@ from datetime import datetime as dt
 # accesses a hostfile and edits it based on the time of day.
 #
 # TODO
-# does not yet run as a daemon/cron
+# does not yet run as a daemon/cron (back burner)
 
 hosts_temp = "/Users/DM-Alt/Software Dev/Python/siteblock/hosts"
 hosts_path = "/etc/hosts"
 redirect = "127.0.0.1"
 website_list = ['www.facebook.com', 'facebook.com',
                 'news.google.com', 'jalopnik.com', 'macrumors.com',\
-                'daringfireball.com', 'reddit.com','www.reddit.com']
+                'daringfireball.com', 'reddit.com','www.reddit.com',\
+                'nytimes.com','kottke.org']
 
 # ===================================================
 
@@ -25,19 +26,21 @@ print(dt.now().weekday()) # syntax for printing day of week
 
 while True:
     # today is Tuesday (1) so we use another number for testing (0)
-
+    # ----------------------------------
     # ATTEMPTS
-    # 1 : if (dt.today().weekday()) in range [0:4]:
-    # 2: weekday = int(dt.today().weekday())
+    # 1:
+    #   if (dt.today().weekday()) in range [0:4]:
+    # 2:
+    #   weekday = int(dt.today().weekday())
     #   if weekday not in range [0:4]:
     #
     # 3:
-    # if dt.today().weekday < 5:
+    #   if dt.today().weekday < 5:
     #
     # 4:
     # print(int(dt.now().weekday()))
         #
-        # -- we need a range that is 0,1,2,3,4 for M-F but datetime is not subscriptable in a range like this.
+        # -- we need a range that is 0,1,2,3,4 for M-F but it seems datetime is not subscriptable in a range like this.
         # solved by not using a range but rather < 5
     if int(dt.now().weekday()) < 5:
         if dt(dt.now().year, dt.now().month, dt.now().day, 8) < dt.now() < dt(dt.now().year, dt.now().month, dt.now().day, 18):
@@ -45,8 +48,9 @@ while True:
             # original:
             # if dt(dt.now().year, dt.now().month, dt.now().day, 8) < dt.now() \
             # < (dt.now().year, dt.now().month, dt.now().day, 16):
-            # ^^^^^^ ERROR: the entire thing fell apart because
-            #        the last item was not in dt().
+            # ^^^^^^ ERROR: yes, in fact, the entire thing fell apart
+            #        because the last item was not in dt(). ...
+            #
             # -----------------
             print("Working hours.")
             with open(hosts_path, 'r+') as file:
@@ -81,4 +85,4 @@ while True:
     #     # (TEST) if the day of the week is't right
     #     print("Day Of Week Was 0 or 7.")
         # --------------------------
-time.sleep(120)
+time.sleep(320)
